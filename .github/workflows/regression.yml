@@ -1,0 +1,38 @@
+# Runs the coding-rule check and every bit-exact testbench on each push.
+# Ubuntu 24.04 ships Icarus Verilog 12, the same version used on Windows for this project.
+name: Regression
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Install Icarus Verilog and Yosys
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog yosys
+          iverilog -V 2>&1 | head -1
+          yosys -V
+
+      - name: Coding rules and latch check
+        run: python3 tools/check_rules.py
+
+      - name: All testbenches against the Python model
+        run: python3 run_sim.py --asic
+
+      - name: Keep the logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: simulation-logs
+          path: |
+            results/tb_*.log
+            asic/results/tb_fir_par.log
