@@ -1,0 +1,68 @@
+{
+  "time": "2026-10-29 07:53:05",
+  "fir": [
+    {
+      "bank": 0,
+      "samples": 3584,
+      "mismatches": 0,
+      "seconds": 0.018369674682617188
+    },
+    {
+      "bank": 1,
+      "samples": 3584,
+      "mismatches": 0,
+      "seconds": 0.018826723098754883
+    },
+    {
+      "bank": 2,
+      "samples": 3584,
+      "mismatches": 0,
+      "seconds": 0.019419193267822266
+    },
+    {
+      "bank": 3,
+      "samples": 3584,
+      "mismatches": 0,
+      "seconds": 0.018285274505615234
+    },
+    {
+      "bank": 4,
+      "samples": 3584,
+      "mismatches": 0,
+      "seconds": 0.01631307601928711
+    }
+  ],
+  "chain": [
+    {
+      "bank": 0,
+      "gain": 4,
+      "samples": 10000,
+      "mismatches": 0
+    },
+    {
+      "bank": 1,
+      "gain": 6,
+      "samples": 10000,
+      "mismatches": 0
+    },
+    {
+      "bank": 2,
+      "gain": 6,
+      "samples": 10000,
+      "mismatches": 0
+    },
+    {
+      "bank": 3,
+      "gain": 8,
+      "samples": 10000,
+      "mismatches": 0
+    },
+    {
+      "bank": 4,
+      "gain": 4,
+      "samples": 10000,
+      "mismatches": 0
+    }
+  ],
+  "pass": true
+}

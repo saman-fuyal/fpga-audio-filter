@@ -1,0 +1,8 @@
+  setting 0 (bank 0, gain 1): 1500 samples bit-exact so far
+  setting 1 (bank 1, gain 4): 1500 samples bit-exact so far
+  setting 2 (bank 2, gain 0): 1500 samples bit-exact so far
+  setting 3 (bank 3, gain 1): 1500 samples bit-exact so far
+  setting 4 (bank 4, gain 2): 1500 samples bit-exact so far
+  dc_block: 4000 samples checked
+PASS tb_chain
+tb_chain.sv:115: $finish called at 60210140000 (1ps)

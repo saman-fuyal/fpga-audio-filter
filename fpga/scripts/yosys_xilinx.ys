@@ -1,0 +1,5 @@
+# Open-source resource estimate for the Artix-7 (no Vivado needed). Vivado's own numbers
+# (build/reports/utilization.rpt) are the authoritative ones for the paper.
+read_verilog -I../rtl ../rtl/sync2.v ../rtl/pdm_rx.v ../rtl/cic_decim.v ../rtl/fir_mac.v ../rtl/coef_rom_comp.v ../rtl/coef_rom_main.v ../rtl/dc_block.v ../rtl/fir_par.v ../rtl/audio_chain.v ../rtl/audio_dac.v ../rtl/uart.v ../rtl/cmd_ctrl.v ../rtl/ui.v ../rtl/top_nexys_a7.v
+synth_xilinx -family xc7 -top top_nexys_a7 -flatten -widemux 0
+tee -o ../results/yosys_xilinx_stat.txt stat

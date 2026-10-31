@@ -1,0 +1,52 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
+| Date         : Thu Oct 29 20:33:30 2026
+| Host         : Saman running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/ACER/Desktop/fpga-audio-filter/fpga-audio-filter/build/reports/utilization_synth_hier.rpt
+| Design       : top_nexys_a7
+| Device       : 7a50ticsg324-1L
+| Design State : Synthesized
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++------------------+-------------------------+------------+------------+---------+------+------+--------+--------+--------------+
+|     Instance     |          Module         | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP48 Blocks |
++------------------+-------------------------+------------+------------+---------+------+------+--------+--------+--------------+
+| top_nexys_a7     |                   (top) |       1948 |       1849 |      96 |    3 | 2188 |      9 |      3 |           18 |
+|   (top_nexys_a7) |                   (top) |          7 |          7 |       0 |    0 |   62 |      0 |      0 |            0 |
+|   u_bt_sync      |                   sync2 |          0 |          0 |       0 |    0 |    2 |      0 |      0 |            0 |
+|   u_chain        |             audio_chain |       1231 |       1228 |       0 |    3 | 1588 |      1 |      3 |           18 |
+|     (u_chain)    |             audio_chain |         64 |         64 |       0 |    0 |   18 |      0 |      0 |            0 |
+|     u_cic        |               cic_decim |        192 |        192 |       0 |    0 |  262 |      0 |      0 |            0 |
+|     u_comp       |                 fir_mac |        126 |        125 |       0 |    1 |  106 |      0 |      1 |            1 |
+|     u_comp_rom   |           coef_rom_comp |          0 |          0 |       0 |    0 |    0 |      0 |      1 |            0 |
+|     u_dc         |                dc_block |         62 |         62 |       0 |    0 |   61 |      0 |      0 |            0 |
+|     u_main       | fir_mac__parameterized0 |        209 |        208 |       0 |    1 |  118 |      0 |      1 |            1 |
+|     u_main_rom   |           coef_rom_main |          0 |          0 |       0 |    0 |    0 |      1 |      0 |            0 |
+|     u_par        |                 fir_par |        578 |        577 |       0 |    1 | 1023 |      0 |      0 |           16 |
+|   u_cmd          |                cmd_ctrl |        365 |        365 |       0 |    0 |  291 |      8 |      0 |            0 |
+|   u_dac          |               audio_dac |         34 |         34 |       0 |    0 |   54 |      0 |      0 |            0 |
+|   u_pdm          |                  pdm_rx |          7 |          7 |       0 |    0 |   11 |      0 |      0 |            0 |
+|     (u_pdm)      |                  pdm_rx |          7 |          7 |       0 |    0 |    9 |      0 |      0 |            0 |
+|     u_sync       |                 sync2_2 |          0 |          0 |       0 |    0 |    2 |      0 |      0 |            0 |
+|   u_rst_sync     |                 sync2_0 |          2 |          2 |       0 |    0 |    2 |      0 |      0 |            0 |
+|   u_seg          |             seg7_status |          8 |          8 |       0 |    0 |   32 |      0 |      0 |            0 |
+|   u_sw_sync      |   sync2__parameterized0 |         26 |         26 |       0 |    0 |   32 |      0 |      0 |            0 |
+|   u_txf          |               sync_fifo |        168 |         72 |      96 |    0 |   20 |      0 |      0 |            0 |
+|   u_urx          |                 uart_rx |         48 |         48 |       0 |    0 |   32 |      0 |      0 |            0 |
+|     (u_urx)      |                 uart_rx |         38 |         38 |       0 |    0 |   30 |      0 |      0 |            0 |
+|     u_sync       |                 sync2_1 |         10 |         10 |       0 |    0 |    2 |      0 |      0 |            0 |
+|   u_utx          |                 uart_tx |         15 |         15 |       0 |    0 |   22 |      0 |      0 |            0 |
+|   u_vu           |                vu_meter |         38 |         38 |       0 |    0 |   40 |      0 |      0 |            0 |
++------------------+-------------------------+------------+------------+---------+------+------+--------+--------+--------------+
+
+

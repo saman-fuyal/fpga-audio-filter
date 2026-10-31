@@ -1,0 +1,34 @@
+{
+  "lut": {
+    "used": 1948.0,
+    "available": 32600.0,
+    "percent": "5.98"
+  },
+  "lutram": {
+    "used": 99.0,
+    "available": 9600.0,
+    "percent": "1.03"
+  },
+  "ff": {
+    "used": 2191.0,
+    "available": 65200.0,
+    "percent": "3.36"
+  },
+  "bram": {
+    "used": 10.5,
+    "available": 75.0,
+    "percent": "14.00"
+  },
+  "dsp": {
+    "used": 18.0,
+    "available": 120.0,
+    "percent": "15.00"
+  },
+  "wns_ns": 1.462,
+  "whs_ns": 0.048,
+  "tns_ns": 0.0,
+  "total_power_w": 0.095,
+  "dynamic_power_w": 0.033,
+  "static_power_w": 0.062,
+  "fmax_mhz": 117.12344811431248
+}

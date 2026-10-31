@@ -1,0 +1,8 @@
+C5 measured frequency response on the Nexys A7-50T (29 Oct 2026), 60 stepped sines per bank, 'T' path
+Comparison with the quantized design response at the same frequencies (300 points in total):
+bank 0 bypass     : 0.000 dB max deviation (all 60 points)
+bank 1 low-pass   : 0.000 dB above -60 dB, 0.002 dB above -90 dB; stopband peak -84.9 dB (design -84.9)
+bank 2 high-pass  : 0.000 dB above -60 dB, 0.002 dB above -90 dB; stopband peak -77.4 dB (design -77.4)
+bank 3 band-pass  : 0.000 dB above -60 dB, 0.003 dB above -90 dB
+bank 4 31-tap core: 0.026 dB above -60 dB, 0.215 dB above -90 dB (16-bit data path); stopband about -54 dB
+Plots: results/hw_freqresp_b0..b4.pdf

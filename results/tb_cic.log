@@ -1,0 +1,2 @@
+PASS tb_cic: 624 outputs bit-exact
+tb_cic.sv:47: $finish called at 468255000 (1ps)

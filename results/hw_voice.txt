@@ -1,0 +1,7 @@
+Voice through each bank: energy per band relative to bank 0 (dB); peak in dBFS
+recording                              peak      80-300 Hz     500-900 Hz   1200-1800 Hz   2300-3200 Hz   4500-7000 Hz  8000-16000 Hz
+bank 0 bypass                         -22.1            0.0            0.0            0.0            0.0            0.0            0.0
+bank 1 low-pass 1 kHz                 -24.6           -4.6            0.0          -15.2          -51.8          -42.3          -44.5
+bank 2 high-pass 2 kHz                -45.0          -86.9          -75.4          -32.5           -0.2           -3.6           -1.1
+bank 3 band-pass 0.4-3.4 kHz          -23.3           -9.8            4.6            3.3            0.4          -42.5          -44.3
+31-tap ASIC core (3.4 kHz low-pass)   -22.9           -2.8            3.4            0.0           -1.6          -13.9          -20.4

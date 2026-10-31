@@ -1,0 +1,23 @@
+# simulation / build outputs
+sim/*.vvp
+sim/*.vcd
+asic/sim/*.vvp
+# Vivado outputs: keep the bitstream, flash image and reports, drop the rest
+build/*
+!build/top_nexys_a7.bit
+!build/top_nexys_a7.mcs
+!build/top_nexys_a7.prm
+!build/reports/
+build_yosys/
+vivado_proj/
+.Xil/
+*.jou
+*.log.bak
+asic/runs/
+__pycache__/
+# LaTeX intermediates
+docs/report/*.aux
+docs/report/*.bbl
+docs/report/*.blg
+docs/report/*.out
+docs/report/*.log

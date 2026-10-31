@@ -1,0 +1,111 @@
+{
+  "comp": {
+    "taps": 63,
+    "cic_droop_at_16k_db": -1.473244657621522,
+    "cic_plus_comp_ripple_0_16k_db": 0.005912331608053788,
+    "cic_plus_comp_ripple_0_20k_db": 6.753881491431384,
+    "stopband_25k_50k_atten_db": 95.11151270026386,
+    "dc_gain": 0.9999427795410156,
+    "max_abs_coef": 114225,
+    "sum_abs_coef": 2.026477813720703,
+    "coef_shift": 2
+  },
+  "main": [
+    {
+      "bank": 0,
+      "name": "Bypass (delay only)",
+      "taps": 511,
+      "float": {
+        "passband_ripple_db": 1.1571929598639446e-14
+      },
+      "quantized": {
+        "passband_ripple_db": 1.1571929598639446e-14
+      },
+      "quantized_unscaled": {
+        "passband_ripple_db": 1.1571929598639446e-14
+      },
+      "coef_shift": 0,
+      "max_abs_coef": 65536,
+      "sum_abs_coef": 1.0,
+      "group_delay_samples": 255,
+      "group_delay_ms": 5.1
+    },
+    {
+      "bank": 1,
+      "name": "Low-pass 1 kHz",
+      "taps": 511,
+      "float": {
+        "passband_ripple_db": 0.027561181539506437,
+        "stopband_atten_db": 85.17111123537994
+      },
+      "quantized": {
+        "passband_ripple_db": 0.027551814159701725,
+        "stopband_atten_db": 84.26176998600437
+      },
+      "quantized_unscaled": {
+        "passband_ripple_db": 0.02836038491507462,
+        "stopband_atten_db": 70.10143302693533
+      },
+      "coef_shift": 5,
+      "max_abs_coef": 98198,
+      "sum_abs_coef": 1.8374443054199219,
+      "group_delay_samples": 255,
+      "group_delay_ms": 5.1
+    },
+    {
+      "bank": 2,
+      "name": "High-pass 2 kHz",
+      "taps": 511,
+      "float": {
+        "passband_ripple_db": 0.02040341074581355,
+        "stopband_atten_db": 88.04231012463943
+      },
+      "quantized": {
+        "passband_ripple_db": 0.022738606921677187,
+        "stopband_atten_db": 77.17373311158204
+      },
+      "quantized_unscaled": {
+        "passband_ripple_db": 0.02423497758135184,
+        "stopband_atten_db": 70.56169821604516
+      },
+      "coef_shift": 1,
+      "max_abs_coef": 121484,
+      "sum_abs_coef": 2.881988525390625,
+      "group_delay_samples": 255,
+      "group_delay_ms": 5.1
+    },
+    {
+      "bank": 3,
+      "name": "Telephone band-pass 0.4-3.4 kHz",
+      "taps": 511,
+      "float": {
+        "passband_ripple_db": 0.034649139058577055,
+        "stopband_atten_db": 83.19551784329084
+      },
+      "quantized": {
+        "passband_ripple_db": 0.034786255710930775,
+        "stopband_atten_db": 79.33553047362939
+      },
+      "quantized_unscaled": {
+        "passband_ripple_db": 0.03688667669300964,
+        "stopband_atten_db": 69.27087714694903
+      },
+      "coef_shift": 3,
+      "max_abs_coef": 69618,
+      "sum_abs_coef": 2.5400314331054688,
+      "group_delay_samples": 255,
+      "group_delay_ms": 5.1
+    }
+  ],
+  "accumulator_bits_needed": 46,
+  "cycles_per_audio_sample": 2000,
+  "main_fir_cycles_per_output": 517,
+  "comp_fir_cycles_per_output": 69,
+  "end_to_end_group_delay_ms": 5.429200000000001,
+  "main_shifts": [
+    0,
+    5,
+    1,
+    3
+  ]
+}

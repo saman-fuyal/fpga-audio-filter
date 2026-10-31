@@ -1,0 +1,54 @@
+Board results, Nexys A7-50T (xc7a50ticsg324-1L), 28-29 Oct 2026.  Details: the files named in brackets.
+
+FPGA build (Vivado 2018.2, after the capture fix)            [fpga_results.json, vivado_build_2018.2.log]
+  1948 LUT, 2191 FF, 18 DSP48E1, 10.5 BRAM; WNS +1.462 ns, TNS 0, WHS +0.048 ns at 100 MHz; Fmax 117.1 MHz; 95 mW
+
+Programming and boot
+  B4  program.bat sram and flash work                                   [program_flash_log.txt]
+  F2  design starts from flash after a power cycle                       DONE
+  B6  rebuild + program + reflash after the capture fix                  DONE
+
+Digital tests over UART
+  C2  status: every switch decodes correctly, flags 0x00                 [hw_status_switches.txt]
+  C3  bit-exact self-test over JTAG: 67 920 samples, 0 mismatches        [hw_selftest.json]
+  C4  same after a flash boot: SELFTEST PASS
+  C5  measured response, 300 points/bank: 0.000 dB deviation above -60 dB (banks 0-3), 0.026 dB (bank 4)
+                                                                        [hw_freqresp_b0..b4, hw_freqresp_summary.txt]
+  B6  capture returns all 32 768 bytes (16 641 before the fix)          [hw_capture_check.json]
+  C7  watchdog: optional, skipped (verified in simulation, tb_top)
+
+Microphone and live chain
+  D1  level meter and noise floor                                        DONE
+  D2  gain step 6 dB (about one LED per step)                            [hw_gain_steps.txt]
+  D3  both SW6 positions respond (released line holds its last value)    DONE
+  D4  1 kHz, laptop speaker, -32.4 dBFS: SNR 42.2 dB, THD -37.6 dB, SINAD 36.3 dB  (paper values)
+      phone speaker: THD -14.7 / -21.0 / -30.9 dB as the level drops 0 / -4.7 / -11.8 dB -> speaker distortion
+                                                                        [hw_d4b_summary.txt]
+  D5  SW6 up vs down: same within 1 dB -> PASS
+  D6  bank 1 low-pass, 3 kHz:            -85.5 dB  (designed -89.4)      [hw_d6_d8_summary.txt]
+  D7  bank 2 high-pass, 500 Hz:          -89.3 dB  (designed -116.3, measurement floor)
+      bank 3 band-pass, 200 Hz:          -12.5 dB  (designed -13.9)
+      bank 3 band-pass, 1 kHz:           +0.8 dB   (designed 0.0)
+  D8  31-tap ASIC core (SW8), 1 kHz:     +1.2 dB   (designed -0.1)
+      31-tap ASIC core (SW8), 8 kHz:     -56.7 dB  (designed -57.2)
+
+Buttons and final check                                                [hw_status_final.txt]
+  F1  CPU_RESET restarts the design, ping OK; BTNC changes nothing without an error
+  C6  status after all tests: flags 0x00, error_sticky=0
+
+  D9  voice through each bank (gain 4, no clipping), energy relative to bank 0   [hw_d9_voice.txt/.png]
+      bank 1 -52 dB at 2.3-3.2 kHz; bank 2 -87 dB below 300 Hz; bank 3 -43 dB at 4.5-7 kHz;
+      ASIC core -20 dB at 8-16 kHz
+
+Regression after all changes (30 Oct, Icarus 12): tb_cic, tb_fir, tb_chain, tb_top, tb_fir_par ALL PASS
+SKY130 (asic/results/sweep.json): PIPE=0 15.6 ns, 145 592 um2, 10.8 mW; PIPE=1 6.0 ns, 190 643 um2, 27.5 mW;
+DRC 0, LVS 0 (typical corner)
+Setup photo: docs/photos/setup_labelled.jpg
+
+Not done
+  E1-E3 listening through the AUDIO OUT jack: the only earphones available had a 4-pole (TRRS) plug,
+        which is silent in the board's mono 3-pole jack. tb_top checks the audio pin in simulation
+        (open drain only, toggles in PWM mode, AUD_SD follows SW15, muted during UART tests); the
+        filters were measured on the board in C5 and D6-D9. The delta-sigma output mode (SW7) was not
+        exercised by any test.
+  G3    demo video: dropped (too large for the repository).

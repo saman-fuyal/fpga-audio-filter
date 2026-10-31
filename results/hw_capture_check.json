@@ -1,0 +1,7 @@
+{
+  "note": "29 Oct, after the FIFO fix: full 32768-byte capture received in silence (before the fix: 16641 bytes)",
+  "rms_dbfs": -77.96662942276224,
+  "peak_dbfs": -66.78717349910612,
+  "tone_hz": 94.60449218749999,
+  "snr_db": 0.23642271280370714
+}

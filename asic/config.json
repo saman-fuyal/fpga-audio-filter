@@ -1,0 +1,16 @@
+{
+    "DESIGN_NAME": "fir_par",
+    "VERILOG_FILES": [
+        "dir::../rtl/fir_par.v"
+    ],
+    "VERILOG_INCLUDE_DIRS": [
+        "dir::../rtl"
+    ],
+    "SYNTH_PARAMETERS": [
+        "PIPE=1"
+    ],
+    "CLOCK_PORT": "clk",
+    "CLOCK_PERIOD": 10,
+    "FP_CORE_UTIL": 45,
+    "PL_TARGET_DENSITY_PCT": "expr::($FP_CORE_UTIL + 10.0)"
+}

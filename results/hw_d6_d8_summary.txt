@@ -1,0 +1,21 @@
+D6-D8 - filter banks with acoustic tones (laptop speaker 10 cm from the mic, gain 0, SW6 down,
+pure sine WAVs from tools/test_tones). tone_dbfs = RMS level of the played tone alone (af_host --freq).
+Each pair was taken back to back; the reference is bank 0 (no filtering).
+
+test  tone     setting                 ref (bank 0)   filtered      measured   designed
+D6    3 kHz    bank 1 low-pass 1 kHz   -39.3 dBFS     -124.7 dBFS   -85.5 dB   -89.4 dB
+D7    500 Hz   bank 2 high-pass 2 kHz  -40.6 dBFS     -129.9 dBFS   -89.3 dB   -116.3 dB
+D7    200 Hz   bank 3 band-pass        -55.4 dBFS     -68.0 dBFS    -12.5 dB   -13.9 dB
+D7    1 kHz    bank 3 band-pass        -40.7 dBFS*    -39.9 dBFS    +0.8 dB    0.0 dB
+D8    1 kHz    SW8 31-tap (ASIC core)  -40.7 dBFS     -39.4 dBFS    +1.2 dB    -0.1 dB
+D8    8 kHz    SW8 31-tap (ASIC core)  -36.5 dBFS     -93.2 dBFS    -56.7 dB   -57.2 dB
+*  d8_off_1k (bank 0, 1 kHz, taken 4 min later). Values = the saved JSON (last run of each tag).
+
+Notes
+- Stopband results (D6, D7 500 Hz) bottom out near -125 to -130 dBFS: the residue in that bin after the
+  filter, i.e. the measurement floor of a 16 384-sample capture, not the filter. They show >= 85 dB rejection.
+- Pass-band and transition-band results agree with the design within the acoustic repeatability
+  (repeated bank-0 runs moved by up to 5 dB when the setup was touched, 0.6 dB when it was not).
+- The laptop speaker produces little at 200 Hz (-55 dBFS) and its 2nd/3rd harmonics (400, 600 Hz) fall in the
+  band-pass, so bank 3 at 200 Hz shows strong 400/600 Hz lines: expected, those are in the pass band.
+- Bank 2 at 500 Hz: the remaining 2.5-3.4 kHz noise hump is room noise in the pass band (2 kHz and up).

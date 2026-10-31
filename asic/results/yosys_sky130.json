@@ -1,0 +1,21 @@
+{
+  "liberty": "sky130_fd_sc_hd__tt_025C_1v80.lib",
+  "runs": [
+    {
+      "pipe": 0,
+      "cell_area_um2": 85839.8272,
+      "cells": 10393,
+      "flops": 514,
+      "comb_delay_ps": 14384.54,
+      "fmax_est_mhz_gate_only": 69.5190809021352
+    },
+    {
+      "pipe": 1,
+      "cell_area_um2": 100198.5984,
+      "cells": 11862,
+      "flops": 1677,
+      "comb_delay_ps": 5741.22,
+      "fmax_est_mhz_gate_only": 174.17900724933028
+    }
+  ]
+}

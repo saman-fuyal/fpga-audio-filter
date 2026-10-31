@@ -1,0 +1,11 @@
+D2 gain steps on the Nexys A7-50T (29 Oct 2026), silence, bank 0, SW6 down, LED meter (LED i on when |x| >= 2^i)
+gain g  (x2^g)   highest steady LED   highest flickering LED
+ 0                2                    3
+ 2                4                    5
+ 4                6                    7
+ 6                8                    9
+ 8               11                   12
+10               12                   13
+12               14                   15 (LD15 = clipping level)
+Fit: steady LED = 2.0 + 1.0 * g (slope from g = 0 to 12: 12 LEDs / 12 steps), i.e. 6.0 dB per gain step as designed.
+Noise peaks at the output for g = 0: about 2^3 = 8 LSB of 16 bits = -72 dBFS; g = 12 (+72 dB) brings them to full scale.

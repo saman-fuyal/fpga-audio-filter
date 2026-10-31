@@ -1,0 +1,35 @@
+
+16. Printing statistics.
+
+=== top_nexys_a7 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     5264 wires
+    11982 wire bits
+      217 public wires
+     3544 public wire bits
+       24 ports
+       61 port bits
+     5006 cells
+       21   $scopeinfo
+        1   BUFG
+      376   CARRY4
+       18   DSP48E1
+     2248   FDRE
+       26   FDSE
+       21   IBUF
+       67   INV
+        1   LUT1
+     1074   LUT2
+      343   LUT3
+      218   LUT4
+      402   LUT5
+      135   LUT6
+        2   MUXF7
+        1   MUXF8
+       39   OBUF
+        1   OBUFT
+        3   RAMB18E1
+        9   RAMB36E1
+

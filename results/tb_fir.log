@@ -1,0 +1,9 @@
+  bank 0: 2939 outputs checked
+  bank 1: 2939 outputs checked
+  bank 2: 2939 outputs checked
+  bank 3: 2939 outputs checked
+  overrun detection OK
+  main FIR latency (input -> output): 517 clocks
+  comp FIR: 512 outputs checked
+PASS tb_fir
+tb_fir.sv:121: $finish called at 61158325000 (1ps)

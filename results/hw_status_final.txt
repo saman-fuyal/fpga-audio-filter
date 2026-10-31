@@ -1,0 +1,5 @@
+F1 / C6, 29 Oct 2026 20:37 (after CPU_RESET, new folder, rebuilt bitstream identical: WNS +1.462 ns)
+ping: 41 46 01 01 -> OK, firmware v1.1
+switches 0x0000: bank 0, gain 0, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+Note: CPU_RESET also clears error_sticky, so the D-test period is covered by LED16 (never red, user observation).

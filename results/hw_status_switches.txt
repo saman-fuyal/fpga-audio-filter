@@ -1,0 +1,104 @@
+Microsoft Windows [Version 10.0.26200.9711]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0000: bank 0, gain 0, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0001: bank 1, gain 0, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0002: bank 2, gain 0, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0004: bank 0, gain 1, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0004: bank 0, gain 1, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0008: bank 0, gain 2, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0010: bank 0, gain 4, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0020: bank 0, gain 8, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0040: bank 0, gain 0, phase L, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0080: bank 0, gain 0, phase H, out delta-sigma, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0100: bank 0, gain 0, phase H, out PWM, ASIC core ON, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0200: bank 0, gain 0, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0400: bank 0, gain 0, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0800: bank 0, gain 0, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x8000: bank 0, gain 0, phase H, out PWM, ASIC core off, amp ON
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x1000: bank 0, gain 0, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0003: bank 3, gain 0, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x0007: bank 3, gain 1, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x000F: bank 3, gain 3, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x001F: bank 3, gain 7, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x003F: bank 3, gain 15, phase H, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x007F: bank 3, gain 15, phase L, out PWM, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x00FF: bank 3, gain 15, phase L, out delta-sigma, ASIC core off, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x01FF: bank 3, gain 15, phase L, out delta-sigma, ASIC core ON, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   py host\af_host.py --port COM6 status
+switches 0x03FF: bank 3, gain 15, phase L, out delta-sigma, ASIC core ON, amp off
+flags 0x00: test=0 uart_frame_err_now=0 error_sticky=0 (red LED16: overrun, UART framing or protocol error) capture=0
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>

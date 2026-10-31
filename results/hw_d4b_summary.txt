@@ -1,0 +1,22 @@
+D4b - where does the harmonic distortion come from?  (bank 0, gain 0, SW6 down, source 10 cm from the mic,
+pure sine WAV from tools/test_tones, THD of the file itself -101.7 dB). Values = the saved JSON of each run
+(for v6 and laptop the second of two runs; the first runs agreed within 2 dB).
+
+run          source / volume            level     SNR      THD      SINAD   H2      H3      LED bar
+d4b_v0       phone, 1 kHz, normal       -31.0     37.3     -14.7    14.7    -32.1   -15.9   LD10
+d4b_v3       phone, 1 kHz, -3 steps     -35.7     39.5     -21.0    20.9    -37.2   -22.1   LD9
+d4b_v6       phone, 1 kHz, -6 steps     -42.8     33.3     -30.9    28.9    -45.5   -31.3   LD8
+d4b_3k       phone, 3 kHz, normal       -27.0     48.6     -33.0    32.9    -37.0   -35.5   -
+d4b_laptop   laptop speaker, 1 kHz      -32.4     42.2     -37.6    36.3    -38.8   -44.8   -
+(levels dBFS RMS, others dB / dBc)
+
+Conclusions
+1. THD falls by 16 dB as the phone volume is lowered by 12 dB: the distortion is level dependent, i.e. a
+   nonlinearity in the acoustic source. The FPGA path is linear (bit-exact on the board, C3/C4).
+2. At the same microphone level (about -32 dBFS) the laptop speaker gives THD -37.6 dB vs -14.7 dB for the
+   phone: 23 dB less with the same microphone and FPGA, so the phone speaker caused the -15 dBc 3rd harmonic.
+3. Mic + FPGA chain THD at -32 dBFS is therefore at most -37.6 dB (1.3 %); an upper bound, because the
+   laptop speaker still contributes. Paper values (make_macros.py): SNR 42.2 dB, THD -37.6 dB, SINAD 36.3 dB.
+4. LED meter: -4.7 dB -> one LED fewer, -11.8 dB -> two fewer, i.e. about 6 dB per LED, as in D2.
+5. SNR (33-49 dB) is limited by room noise and mains hum in the 20 Hz - 20 kHz band, not by the chain.
+6. D5 (SW6 up vs down, phone 1 kHz): same within 1 dB (THD -13.9 / -15.1 dB, SNR 34.7 / 35.5 dB) - PASS.

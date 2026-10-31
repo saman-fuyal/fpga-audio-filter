@@ -1,0 +1,1449 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.70+ (git sha1 365bb887b, Release, GNU /usr/bin/c++ 13.3.0)
+
+-- Running command `
+read_verilog -I/home/claude/fpga-audio-filter/asic/../rtl /home/claude/fpga-audio-filter/asic/../rtl/fir_par.v
+chparam -set PIPE 1 fir_par
+synth -top fir_par -flatten
+dfflibmap -liberty /tmp/orfs/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty /tmp/orfs/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib -script /home/claude/fpga-audio-filter/asic/results/abc_delay.script
+opt_clean -purge
+stat -liberty /tmp/orfs/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+' --
+
+1. Executing Verilog-2005 frontend: /home/claude/fpga-audio-filter/asic/../rtl/fir_par.v
+Parsing Verilog input from `/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v' to AST representation.
+Generating RTLIL representation for module `\fir_par'.
+Successfully finished Verilog frontend.
+Parameter \PIPE = 1
+
+2. Executing AST frontend in derive mode using pre-parsed AST for module `\fir_par'.
+Parameter \PIPE = 1
+Generating RTLIL representation for module `$paramod\fir_par\PIPE=s32'00000000000000000000000000000001'.
+
+3. Executing SYNTH pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \fir_par
+
+3.1.2. Analyzing design hierarchy..
+Top module:  \fir_par
+Removed 0 unused modules.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:133$proc$93 in module fir_par.
+Marked 4 switch rules as full_case in process $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:86$proc$90 in module fir_par.
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 4 redundant assignments.
+Promoted 10 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~5 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:108$proc$140'.
+Creating decoders for process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:133$proc$93'.
+     1/4: $0\out_data[15:0]
+     2/4: $0\out_valid[0:0]
+     3/4: $0\v_q[7:0]
+     4/4: $0\x_q[495:0]
+Creating decoders for process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:86$proc$90'.
+     1/4: $3\out_data_d[15:0]
+     2/4: $2\out_data_d[15:0]
+     3/4: $1\out_data_d[15:0]
+     4/4: $1\x_d[495:0]
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\fir_par.\x_d' from process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:86$proc$90'.
+No latch inferred for signal `\fir_par.\v_d' from process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:86$proc$90'.
+No latch inferred for signal `\fir_par.\out_valid_d' from process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:86$proc$90'.
+No latch inferred for signal `\fir_par.\out_data_d' from process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:86$proc$90'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\fir_par.\g_pipe.pre_q' using process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:108$proc$140'.
+  created $dff cell `$procdff$174' with positive edge clock.
+Creating register for signal `\fir_par.\g_pipe.prod_q' using process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:108$proc$140'.
+  created $dff cell `$procdff$175' with positive edge clock.
+Creating register for signal `\fir_par.\g_pipe.l1_q' using process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:108$proc$140'.
+  created $dff cell `$procdff$176' with positive edge clock.
+Creating register for signal `\fir_par.\g_pipe.l2_q' using process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:108$proc$140'.
+  created $dff cell `$procdff$177' with positive edge clock.
+Creating register for signal `\fir_par.\g_pipe.l3_q' using process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:108$proc$140'.
+  created $dff cell `$procdff$178' with positive edge clock.
+Creating register for signal `\fir_par.\g_pipe.l4_q' using process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:108$proc$140'.
+  created $dff cell `$procdff$179' with positive edge clock.
+Creating register for signal `\fir_par.\out_valid' using process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:133$proc$93'.
+  created $dff cell `$procdff$180' with positive edge clock.
+Creating register for signal `\fir_par.\out_data' using process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:133$proc$93'.
+  created $dff cell `$procdff$181' with positive edge clock.
+Creating register for signal `\fir_par.\x_q' using process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:133$proc$93'.
+  created $dff cell `$procdff$182' with positive edge clock.
+Creating register for signal `\fir_par.\v_q' using process `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:133$proc$93'.
+  created $dff cell `$procdff$183' with positive edge clock.
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:108$proc$140'.
+Found and cleaned up 1 empty switch in `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:133$proc$93'.
+Removing empty process `fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:133$proc$93'.
+Found and cleaned up 4 empty switches in `\fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:86$proc$90'.
+Removing empty process `fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:86$proc$90'.
+Cleaned up 5 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+<suppressed ~5 debug messages>
+
+3.3. Executing CHECK pass (checking for obvious problems).
+Checking module fir_par...
+Found and reported 0 problems.
+
+3.4. Executing FLATTEN pass (flatten design).
+
+3.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+<suppressed ~8 debug messages>
+
+3.6. Executing CHECK pass (checking for obvious problems).
+Checking module fir_par...
+Found and reported 0 problems.
+
+3.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+Removed 1 unused cells and 79 unused wires.
+<suppressed ~2 debug messages>
+
+3.8. Executing OPT pass (performing simple optimizations).
+
+3.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+
+3.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 70 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fir_par..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$166.
+    dead port 2/2 on $mux $procmux$160.
+    dead port 1/2 on $mux $procmux$158.
+Removed 3 multiplexer ports.
+<suppressed ~15 debug messages>
+
+3.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fir_par.
+Performed a total of 0 changes.
+
+3.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 67 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 1 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 66 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 132 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 231 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 232 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 233 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 264 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 265 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 297 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 298 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 330 on $procdff$175 ($dff) from module fir_par.
+Setting constant 0-bit at position 495 on $procdff$175 ($dff) from module fir_par.
+
+3.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+3.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+
+3.8.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fir_par..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+3.8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fir_par.
+Performed a total of 0 changes.
+
+3.8.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 67 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.8.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+
+3.8.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+
+3.8.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.9. Executing FSM pass (extract and optimize FSM).
+
+3.9.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+3.9.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+3.9.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.9.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+
+3.9.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.9.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+3.9.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+3.9.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+3.10. Executing OPT pass (performing simple optimizations).
+
+3.10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+
+3.10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 67 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fir_par..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+3.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fir_par.
+Performed a total of 0 changes.
+
+3.10.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 67 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$183 ($dff) from module fir_par (D = { \v_q [6:0] \in_valid }, Q = \v_q, rval = 8'00000000).
+Adding SRST signal on $procdff$182 ($dff) from module fir_par (D = \x_d, Q = \x_q, rval = 496'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$186 ($sdff) from module fir_par (D = { \x_q [479:0] \in_data }, Q = \x_q).
+Adding SRST signal on $procdff$180 ($dff) from module fir_par (D = \v_q [6], Q = \out_valid, rval = 1'0).
+Adding SRST signal on $procdff$181 ($dff) from module fir_par (D = \out_data_d, Q = \out_data, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:337:slice$189 ($sdff) from module fir_par (D = $2\out_data_d[15:0], Q = \out_data).
+
+3.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+Removed 6 unused cells and 6 unused wires.
+<suppressed ~9 debug messages>
+
+3.10.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+
+3.10.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.10.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fir_par..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+3.10.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fir_par.
+Performed a total of 0 changes.
+
+3.10.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 61 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.10.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.10.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+
+3.10.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+
+3.10.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.11. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 8) from FF cell fir_par.$auto$ff.cc:337:slice$185 ($sdff).
+Removed top 21 bits (of 37) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:83$add$88 ($add).
+Removed top 15 bits (of 37) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:93$gt$91 ($gt).
+Removed top 16 bits (of 32) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:93$gt$91 ($gt).
+Removed top 15 bits (of 37) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:94$lt$92 ($lt).
+Removed top 21 bits (of 37) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:94$lt$92 ($lt).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$95 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$95 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$95 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$96 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$96 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$96 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$97 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$97 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$97 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$98 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$98 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$98 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$99 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$99 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$99 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$100 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$100 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$100 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$101 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$101 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$101 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$102 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$102 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$102 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$103 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$103 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$103 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$104 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$104 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$104 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$105 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$105 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$105 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$106 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$106 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$106 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$107 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$107 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$107 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$108 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$108 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$108 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$109 ($add) from unsigned to signed.
+Removed top 1 bits (of 17) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$109 ($add).
+Removed top 1 bits (of 17) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$109 ($add).
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$110 ($mul).
+Removed top 19 bits (of 31) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$110 ($mul).
+Removed top 2 bits (of 31) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$110 ($mul).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$111 ($mul) from unsigned to signed.
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$111 ($mul).
+Removed top 19 bits (of 33) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$111 ($mul).
+Removed top 2 bits (of 33) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$111 ($mul).
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$112 ($mul).
+Removed top 19 bits (of 32) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$112 ($mul).
+Removed top 2 bits (of 32) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$112 ($mul).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$113 ($mul) from unsigned to signed.
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$113 ($mul).
+Removed top 20 bits (of 33) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$113 ($mul).
+Removed top 3 bits (of 33) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$113 ($mul).
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$114 ($mul).
+Removed top 21 bits (of 32) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$114 ($mul).
+Removed top 4 bits (of 32) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$114 ($mul).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$115 ($mul) from unsigned to signed.
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$115 ($mul).
+Removed top 25 bits (of 33) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$115 ($mul).
+Removed top 8 bits (of 33) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$115 ($mul).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$116 ($mul) from unsigned to signed.
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$116 ($mul).
+Removed top 22 bits (of 33) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$116 ($mul).
+Removed top 5 bits (of 33) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$116 ($mul).
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$117 ($mul).
+Removed top 21 bits (of 30) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$117 ($mul).
+Removed top 4 bits (of 30) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$117 ($mul).
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$118 ($mul).
+Removed top 22 bits (of 31) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$118 ($mul).
+Removed top 5 bits (of 31) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$118 ($mul).
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$119 ($mul).
+Removed top 22 bits (of 31) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$119 ($mul).
+Removed top 5 bits (of 31) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$119 ($mul).
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$120 ($mul).
+Removed top 25 bits (of 32) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$120 ($mul).
+Removed top 8 bits (of 32) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$120 ($mul).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$121 ($mul) from unsigned to signed.
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$121 ($mul).
+Removed top 24 bits (of 33) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$121 ($mul).
+Removed top 7 bits (of 33) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$121 ($mul).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$122 ($mul) from unsigned to signed.
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$122 ($mul).
+Removed top 23 bits (of 33) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$122 ($mul).
+Removed top 6 bits (of 33) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$122 ($mul).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$123 ($mul) from unsigned to signed.
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$123 ($mul).
+Removed top 23 bits (of 33) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$123 ($mul).
+Removed top 6 bits (of 33) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$123 ($mul).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$124 ($mul) from unsigned to signed.
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$124 ($mul).
+Removed top 24 bits (of 33) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$124 ($mul).
+Removed top 7 bits (of 33) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$124 ($mul).
+Removed top 16 bits (of 33) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$125 ($mul).
+Removed top 25 bits (of 32) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$125 ($mul).
+Removed top 8 bits (of 32) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$125 ($mul).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$126 ($add) from unsigned to signed.
+Removed top 4 bits (of 37) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$126 ($add).
+Removed top 4 bits (of 37) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$126 ($add).
+Removed top 3 bits (of 37) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$126 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$127 ($add) from unsigned to signed.
+Removed top 4 bits (of 37) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$127 ($add).
+Removed top 4 bits (of 37) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$127 ($add).
+Removed top 3 bits (of 37) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$127 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$128 ($add) from unsigned to signed.
+Removed top 4 bits (of 37) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$128 ($add).
+Removed top 4 bits (of 37) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$128 ($add).
+Removed top 3 bits (of 37) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$128 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$129 ($add) from unsigned to signed.
+Removed top 4 bits (of 37) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$129 ($add).
+Removed top 4 bits (of 37) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$129 ($add).
+Removed top 3 bits (of 37) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$129 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$130 ($add) from unsigned to signed.
+Removed top 4 bits (of 37) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$130 ($add).
+Removed top 4 bits (of 37) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$130 ($add).
+Removed top 3 bits (of 37) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$130 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$131 ($add) from unsigned to signed.
+Removed top 4 bits (of 37) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$131 ($add).
+Removed top 4 bits (of 37) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$131 ($add).
+Removed top 3 bits (of 37) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$131 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$132 ($add) from unsigned to signed.
+Removed top 4 bits (of 37) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$132 ($add).
+Removed top 4 bits (of 37) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$132 ($add).
+Removed top 3 bits (of 37) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$132 ($add).
+Converting cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$133 ($add) from unsigned to signed.
+Removed top 4 bits (of 37) from port A of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$133 ($add).
+Removed top 4 bits (of 37) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$133 ($add).
+Removed top 3 bits (of 37) from port Y of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$133 ($add).
+Removed top 3 bits (of 296) from FF cell fir_par.$procdff$176 ($dff).
+Removed top 8 bits (of 515) from FF cell fir_par.$auto$ff.cc:337:slice$184 ($dff).
+Removed top 8 bits (of 33) from port B of cell fir_par.$/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$133 ($add).
+Removed top 1 bits (of 8) from wire fir_par.v_q.
+
+3.12. Executing PEEPOPT pass (run peephole optimizers).
+
+3.13. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+3.14. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module fir_par:
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:77$add$139 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:77$add$138 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$137 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$136 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$135 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$134 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$133 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$132 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$131 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$130 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$129 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$128 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$127 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$126 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$125 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$124 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$123 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$122 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$121 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$120 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$119 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$118 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$117 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$116 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$115 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$114 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$113 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$112 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$111 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$110 ($mul).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$109 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$108 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$107 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$106 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$105 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$104 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$103 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$102 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$101 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$100 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$99 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$98 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$97 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$96 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$95 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:83$add$88 ($add).
+  creating $macc model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:80$add$87 ($add).
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:80$add$87.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:83$add$88.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$95.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$96.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$97.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$98.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$99.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$100.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$101.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$102.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$103.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$104.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$105.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$106.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$107.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$108.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$109.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$126.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$127.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$128.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$129.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$130.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$131.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$132.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$133.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$134.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$135.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$136.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$137.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:77$add$138.
+  creating $alu model for $macc $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:77$add$139.
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$124: $auto$alumacc.cc:427:replace_macc$192
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$125: $auto$alumacc.cc:427:replace_macc$193
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$110: $auto$alumacc.cc:427:replace_macc$194
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$111: $auto$alumacc.cc:427:replace_macc$195
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$112: $auto$alumacc.cc:427:replace_macc$196
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$113: $auto$alumacc.cc:427:replace_macc$197
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$114: $auto$alumacc.cc:427:replace_macc$198
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$115: $auto$alumacc.cc:427:replace_macc$199
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$116: $auto$alumacc.cc:427:replace_macc$200
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$117: $auto$alumacc.cc:427:replace_macc$201
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$118: $auto$alumacc.cc:427:replace_macc$202
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$119: $auto$alumacc.cc:427:replace_macc$203
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$120: $auto$alumacc.cc:427:replace_macc$204
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$121: $auto$alumacc.cc:427:replace_macc$205
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$122: $auto$alumacc.cc:427:replace_macc$206
+  creating $macc cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:66$mul$123: $auto$alumacc.cc:427:replace_macc$207
+  creating $alu model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:94$lt$92 ($lt): new $alu
+  creating $alu model for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:93$gt$91 ($gt): new $alu
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:93$gt$91: $auto$alumacc.cc:578:replace_alu$210
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:94$lt$92: $auto$alumacc.cc:578:replace_alu$223
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:77$add$139: $auto$alumacc.cc:578:replace_alu$230
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:77$add$138: $auto$alumacc.cc:578:replace_alu$233
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$137: $auto$alumacc.cc:578:replace_alu$236
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$136: $auto$alumacc.cc:578:replace_alu$239
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$135: $auto$alumacc.cc:578:replace_alu$242
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:74$add$134: $auto$alumacc.cc:578:replace_alu$245
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$133: $auto$alumacc.cc:578:replace_alu$248
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$132: $auto$alumacc.cc:578:replace_alu$251
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$131: $auto$alumacc.cc:578:replace_alu$254
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$130: $auto$alumacc.cc:578:replace_alu$257
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$129: $auto$alumacc.cc:578:replace_alu$260
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$128: $auto$alumacc.cc:578:replace_alu$263
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$127: $auto$alumacc.cc:578:replace_alu$266
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:70$add$126: $auto$alumacc.cc:578:replace_alu$269
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$109: $auto$alumacc.cc:578:replace_alu$272
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$108: $auto$alumacc.cc:578:replace_alu$275
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$107: $auto$alumacc.cc:578:replace_alu$278
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$106: $auto$alumacc.cc:578:replace_alu$281
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$105: $auto$alumacc.cc:578:replace_alu$284
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$104: $auto$alumacc.cc:578:replace_alu$287
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$103: $auto$alumacc.cc:578:replace_alu$290
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$102: $auto$alumacc.cc:578:replace_alu$293
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$101: $auto$alumacc.cc:578:replace_alu$296
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$100: $auto$alumacc.cc:578:replace_alu$299
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$99: $auto$alumacc.cc:578:replace_alu$302
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$98: $auto$alumacc.cc:578:replace_alu$305
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$97: $auto$alumacc.cc:578:replace_alu$308
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$96: $auto$alumacc.cc:578:replace_alu$311
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:61$add$95: $auto$alumacc.cc:578:replace_alu$314
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:83$add$88: $auto$alumacc.cc:578:replace_alu$317
+  creating $alu cell for $/home/claude/fpga-audio-filter/asic/../rtl/fir_par.v:80$add$87: $auto$alumacc.cc:578:replace_alu$320
+  created 33 $alu and 16 $macc cells.
+
+3.15. Executing SHARE pass (SAT-based resource sharing).
+
+3.16. Executing OPT pass (performing simple optimizations).
+
+3.16.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+<suppressed ~1 debug messages>
+
+3.16.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 68 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.16.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fir_par..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+3.16.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fir_par.
+Performed a total of 0 changes.
+
+3.16.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 68 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.16.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.16.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+Removed 1 unused cells and 3 unused wires.
+<suppressed ~2 debug messages>
+
+3.16.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+
+3.16.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.16.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fir_par..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+3.16.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fir_par.
+Performed a total of 0 changes.
+
+3.16.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 67 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.16.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.16.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+
+3.16.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+
+3.16.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.17. Executing MEMORY pass.
+
+3.17.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+3.17.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+3.17.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+3.17.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+3.17.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+3.17.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+
+3.17.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+3.17.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+3.17.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+
+3.17.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+
+3.19. Executing OPT pass (performing simple optimizations).
+
+3.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+<suppressed ~9 debug messages>
+
+3.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 82 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.19.3. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 148 on $procdff$176 ($dff) from module fir_par.
+Setting constant 0-bit at position 149 on $procdff$176 ($dff) from module fir_par.
+
+3.19.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+Removed 15 unused cells and 15 unused wires.
+<suppressed ~16 debug messages>
+
+3.19.5. Rerunning OPT passes. (Removed registers in this run.)
+
+3.19.6. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+<suppressed ~1 debug messages>
+
+3.19.7. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 67 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.19.8. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.19.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+
+3.19.10. Finished fast OPT passes.
+
+3.20. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+3.21. Executing OPT pass (performing simple optimizations).
+
+3.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+
+3.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 67 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fir_par..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+3.21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fir_par.
+Performed a total of 0 changes.
+
+3.21.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 67 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Removed a total of 0 cells.
+
+3.21.6. Executing OPT_SHARE pass.
+
+3.21.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.21.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+
+3.21.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+
+3.21.10. Finished fast OPT passes. (There is nothing left to do.)
+
+3.22. Executing TECHMAP pass (map to technology primitives).
+
+3.22.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.22.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $dff.
+Using extmapper simplemap for cells of type $sdff.
+Using extmapper maccmap for cells of type $macc_v2.
+  add \g_pipe.pre_q [254:238] * 9'011000011 (17x9 bits, signed)
+Using extmapper simplemap for cells of type $sdffe.
+  add \g_pipe.pre_q [271:255] * 7'0110011 (17x7 bits, signed)
+  add \g_pipe.pre_q [16:0] * 12'011001000101 (17x12 bits, signed)
+  add \g_pipe.pre_q [33:17] * 14'01011101100011 (17x14 bits, signed)
+  add \g_pipe.pre_q [50:34] * 13'0100101100001 (17x13 bits, signed)
+  add \g_pipe.pre_q [67:51] * 13'0110001100011 (17x13 bits, signed)
+  add \g_pipe.pre_q [84:68] * 11'01011100111 (17x11 bits, signed)
+  add \g_pipe.pre_q [101:85] * 8'01101001 (17x8 bits, signed)
+  add \g_pipe.pre_q [118:102] * 11'10100001111 (17x11 bits, signed)
+  add \g_pipe.pre_q [135:119] * 9'101111101 (17x9 bits, signed)
+  add \g_pipe.pre_q [152:136] * 9'100011111 (17x9 bits, signed)
+  add \g_pipe.pre_q [169:153] * 9'101111111 (17x9 bits, signed)
+  add \g_pipe.pre_q [186:170] * 7'1001011 (17x7 bits, signed)
+  add \g_pipe.pre_q [203:187] * 9'010111011 (17x9 bits, signed)
+  add \g_pipe.pre_q [220:204] * 10'0100110111 (17x10 bits, signed)
+  add \g_pipe.pre_q [237:221] * 10'0100100011 (17x10 bits, signed)
+Using template $paramod$0eadcd4f5250c00f997260f7d72806c26e30a5ed\_90_alu for cells of type $alu.
+Using template $paramod$eeebfddc0b362e0ec40f8f7e85e4c8093f1197b3\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $or.
+Using template $paramod$085438112a9a585bd2301e4fd5091b088904ba66\_90_alu for cells of type $alu.
+Using template $paramod$7fa6970f0c97644a990ba1d0dcc56c6042128be7\_90_alu for cells of type $alu.
+Using template $paramod$46bb7404051772a584cf91a8bfdc4832ffc1d8ba\_90_alu for cells of type $alu.
+Using template $paramod$83770cc9ec60c6ddc35c87d7156e9eda2283c8d9\_90_alu for cells of type $alu.
+Using template $paramod$4f86c7518c9e2549b5ec7807b00e984e593301e5\_90_alu for cells of type $alu.
+Using template $paramod$670c02bdf2c02360c72deaf543d10c35268f9d8f\_90_alu for cells of type $alu.
+Using template $paramod$d7a150ad86ee1a2dbc4fd9d8439a9e17bdfd86e4\_90_alu for cells of type $alu.
+Using template $paramod$d6db97136a6da2249994243896b37da2c3231197\_90_alu for cells of type $alu.
+Using template $paramod$2470b7ea32c975a55c3ab8b283381b72d09e16d3\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011010 for cells of type $fa.
+Using template $paramod$7af98a8d3d01ff58dee4212ab52569c379e064a1\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011000 for cells of type $fa.
+Using template $paramod$e82d3fc1811c5751348a3964470632b35a435fc7\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011101 for cells of type $fa.
+Using template $paramod$88ebedc0964674c5b2e447c66b33a42fc7e7abe0\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011111 for cells of type $fa.
+Using template $paramod$ebf89ea36a793f0f77858f212141d47c833068ad\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011110 for cells of type $fa.
+Using template $paramod$403d07c18de10cda2ac652a859c56aea81aaf9b5\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011100 for cells of type $fa.
+Using template $paramod$d7c91f8d4ce389beb1bd34b271e05fae2549a2a8\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011001 for cells of type $fa.
+Using template $paramod$4868d58a04723871777326409a611fa912defcd8\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011011 for cells of type $fa.
+Using template $paramod$f02bbbf710bba6238f4bdfa41b3051acfe2064a8\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010111 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010111 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010110 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010110 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000111 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000111 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100101 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100101 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100011 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100011 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100001 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100001 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100010 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100010 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011111 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010001 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010001 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011010 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011000 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011101 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011110 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011100 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011001 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011011 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~9400 debug messages>
+
+3.23. Executing OPT pass (performing simple optimizations).
+
+3.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+<suppressed ~22660 debug messages>
+
+3.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 17800 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Computing hashes of 17255 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Computing hashes of 16956 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Computing hashes of 16896 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Computing hashes of 16879 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Computing hashes of 16877 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Computing hashes of 16875 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+<suppressed ~2775 debug messages>
+Removed a total of 925 cells.
+
+3.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+Removed 1542 unused cells and 4318 unused wires.
+<suppressed ~1543 debug messages>
+
+3.23.5. Finished fast OPT passes.
+
+3.24. Executing ABC pass (technology mapping using ABC).
+
+3.24.1. Summary of detected clock domains:
+  8 cells in clk=\clk, en={ }, arst={ }, srst=!\rst_n
+  976 cells in clk=\clk, en=\in_valid, arst={ }, srst=!\rst_n
+  104 cells in clk=\clk, en=\v_q [6], arst={ }, srst=!\rst_n
+  14245 cells in clk=\clk, en={ }, arst={ }, srst={ }
+
+3.24.2. Extracting gate netlist of module `\fir_par' to `<abc-temp-dir>/input.blif'..
+Found matching posedge clock domain: \clk, synchronously reset by !\rst_n
+
+3.24.3. Extracting gate netlist of module `\fir_par' to `<abc-temp-dir>/input.blif'..
+Found matching posedge clock domain: \clk, enabled by \in_valid, synchronously reset by !\rst_n
+
+3.24.3.1. Executed ABC.
+Extracted 0 gates and 0 wires to a netlist network with 0 inputs and 0 outputs.
+Don't call ABC as there is nothing to map.
+Removing temp directory.
+
+3.24.4. Extracting gate netlist of module `\fir_par' to `<abc-temp-dir>/input.blif'..
+Found matching posedge clock domain: \clk, enabled by \v_q [6], synchronously reset by !\rst_n
+
+3.24.5. Extracting gate netlist of module `\fir_par' to `<abc-temp-dir>/input.blif'..
+Found matching posedge clock domain: \clk
+
+3.24.5.1. Executed ABC.
+Extracted 480 gates and 960 wires to a netlist network with 480 inputs and 480 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+3.24.5.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:      240
+ABC RESULTS:               XOR cells:      240
+ABC RESULTS:        internal signals:        0
+ABC RESULTS:           input signals:      480
+ABC RESULTS:          output signals:      480
+Removing temp directory.
+
+3.24.5.1. Executed ABC.
+Extracted 88 gates and 112 wires to a netlist network with 22 inputs and 16 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+3.24.5.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:        6
+ABC RESULTS:               BUF cells:        1
+ABC RESULTS:              NAND cells:       32
+ABC RESULTS:               NOR cells:        3
+ABC RESULTS:                OR cells:        1
+ABC RESULTS:        internal signals:       74
+ABC RESULTS:           input signals:       22
+ABC RESULTS:          output signals:       16
+Removing temp directory.
+
+3.24.5.1. Executed ABC.
+Extracted 13026 gates and 14699 wires to a netlist network with 1673 inputs and 1175 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+3.24.5.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:     1507
+ABC RESULTS:            ANDNOT cells:      212
+ABC RESULTS:               BUF cells:       23
+ABC RESULTS:               MUX cells:      229
+ABC RESULTS:              NAND cells:     3619
+ABC RESULTS:               NOR cells:      112
+ABC RESULTS:               NOT cells:       91
+ABC RESULTS:                OR cells:      860
+ABC RESULTS:             ORNOT cells:      200
+ABC RESULTS:              XNOR cells:      866
+ABC RESULTS:               XOR cells:     2545
+ABC RESULTS:        internal signals:    11851
+ABC RESULTS:           input signals:     1673
+ABC RESULTS:          output signals:     1175
+Removing temp directory.
+Removing global temp directory.
+
+3.25. Executing OPT pass (performing simple optimizations).
+
+3.25.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fir_par.
+<suppressed ~4 debug messages>
+
+3.25.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fir_par'.
+Computing hashes of 12502 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Computing hashes of 12440 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Computing hashes of 12382 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Computing hashes of 12345 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+Computing hashes of 12343 cells of `\fir_par'.
+Finding duplicate cells in `\fir_par'.
+<suppressed ~477 debug messages>
+Removed a total of 159 cells.
+
+3.25.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.25.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+Removed 0 unused cells and 7787 unused wires.
+<suppressed ~1 debug messages>
+
+3.25.5. Finished fast OPT passes.
+
+3.26. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `fir_par'. Setting top module to fir_par.
+
+3.26.1. Analyzing design hierarchy..
+Top module:  \fir_par
+
+3.26.2. Analyzing design hierarchy..
+Top module:  \fir_par
+Removed 0 unused modules.
+
+3.27. Printing statistics.
+
+=== fir_par ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     9144 wires
+    14500 wire bits
+       29 public wires
+     4650 public wire bits
+        6 ports
+       36 port bits
+    12343 cells
+      212   $_ANDNOT_
+     1746   $_AND_
+     1157   $_DFF_P_
+      229   $_MUX_
+     3581   $_NAND_
+      115   $_NOR_
+       91   $_NOT_
+      200   $_ORNOT_
+      858   $_OR_
+      512   $_SDFFE_PN0P_
+        8   $_SDFF_PN0_
+      866   $_XNOR_
+     2768   $_XOR_
+
+3.28. Executing CHECK pass (checking for obvious problems).
+Checking module fir_par...
+Found and reported 0 problems.
+
+4. Executing DFFLIBMAP pass (mapping DFF/DLATCH cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_1 (noninv, pins=3, area=20.02) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtn_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_NN0_.
+  cell sky130_fd_sc_hd__dfrtp_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_1 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__edfxtp_1 (noninv, pins=4, area=30.03) is a direct match for cell type $_DFFE_PP_.
+  cell sky130_fd_sc_hd__dfbbn_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_NNN_.
+  cell sky130_fd_sc_hd__dfbbp_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_PNN_.
+  cell sky130_fd_sc_hd__dlxtn_1 (noninv, pins=3, area=15.01) is a direct match for cell type $_DLATCH_N_.
+  cell sky130_fd_sc_hd__lpflow_inputisolatch_1 (noninv, pins=3, area=13.76) is a direct match for cell type $_DLATCH_P_.
+  cell sky130_fd_sc_hd__dlrtn_1 (noninv, pins=4, area=17.52) is a direct match for cell type $_DLATCH_NN0_.
+  cell sky130_fd_sc_hd__dlrtp_1 (noninv, pins=4, area=16.27) is a direct match for cell type $_DLATCH_PN0_.
+  final dff/dlatch cell mappings:
+    unmapped dff/dlatch cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_1 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    \sky130_fd_sc_hd__dfrtn_1 _DFF_NN0_ (.CLK_N( C), .D( D), .Q( Q), .RESET_B( R));
+    unmapped dff/dlatch cell: $_DFF_NN1_
+    unmapped dff/dlatch cell: $_DFF_NP0_
+    unmapped dff/dlatch cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_1 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_1 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff/dlatch cell: $_DFF_PP0_
+    unmapped dff/dlatch cell: $_DFF_PP1_
+    unmapped dff/dlatch cell: $_DFFE_NN_
+    unmapped dff/dlatch cell: $_DFFE_NP_
+    unmapped dff/dlatch cell: $_DFFE_PN_
+    \sky130_fd_sc_hd__edfxtp_1 _DFFE_PP_ (.CLK( C), .D( D), .DE( E), .Q( Q));
+    \sky130_fd_sc_hd__dfbbn_1 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff/dlatch cell: $_DFFSR_NNP_
+    unmapped dff/dlatch cell: $_DFFSR_NPN_
+    unmapped dff/dlatch cell: $_DFFSR_NPP_
+    \sky130_fd_sc_hd__dfbbp_1 _DFFSR_PNN_ (.CLK( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff/dlatch cell: $_DFFSR_PNP_
+    unmapped dff/dlatch cell: $_DFFSR_PPN_
+    unmapped dff/dlatch cell: $_DFFSR_PPP_
+    \sky130_fd_sc_hd__dlxtn_1 _DLATCH_N_ (.D( D), .GATE_N( E), .Q( Q));
+    \sky130_fd_sc_hd__lpflow_inputisolatch_1 _DLATCH_P_ (.D( D), .Q( Q), .SLEEP_B( E));
+    \sky130_fd_sc_hd__dlrtn_1 _DLATCH_NN0_ (.D( D), .GATE_N( E), .Q( Q), .RESET_B( R));
+    unmapped dff/dlatch cell: $_DLATCH_NN1_
+    unmapped dff/dlatch cell: $_DLATCH_NP0_
+    unmapped dff/dlatch cell: $_DLATCH_NP1_
+    \sky130_fd_sc_hd__dlrtp_1 _DLATCH_PN0_ (.D( D), .GATE( E), .Q( Q), .RESET_B( R));
+    unmapped dff/dlatch cell: $_DLATCH_PN1_
+    unmapped dff/dlatch cell: $_DLATCH_PP0_
+    unmapped dff/dlatch cell: $_DLATCH_PP1_
+    unmapped dff/dlatch cell: $_DLATCHSR_NNN_
+    unmapped dff/dlatch cell: $_DLATCHSR_NNP_
+    unmapped dff/dlatch cell: $_DLATCHSR_NPN_
+    unmapped dff/dlatch cell: $_DLATCHSR_NPP_
+    unmapped dff/dlatch cell: $_DLATCHSR_PNN_
+    unmapped dff/dlatch cell: $_DLATCHSR_PNP_
+    unmapped dff/dlatch cell: $_DLATCHSR_PPN_
+    unmapped dff/dlatch cell: $_DLATCHSR_PPP_
+
+4.1. Executing DFFLEGALIZE pass (convert FFs and LATCHes to types supported by the target).
+<suppressed ~24 debug messages>
+Mapping DFF/DLATCH cells in module `\fir_par':
+  mapped 1677 $_DFF_P_ cells to \sky130_fd_sc_hd__dfxtp_1 cells.
+
+5. Executing ABC pass (technology mapping using ABC).
+
+5.1. Summary of detected clock domains:
+  13375 cells in clk={ }, en={ }, arst={ }, srst={ }
+
+5.2. Extracting gate netlist of module `\fir_par' to `<abc-temp-dir>/input.blif'..
+ABC: using cached merged SCL: /tmp/yosys-liberty-scl-cache-0/yosys_merged_cd199c14.scl (1 files)
+No matching clock domain found. Not extracting any FF cells.
+
+5.2.1. Executed ABC.
+Extracted 11698 gates and 13382 wires to a netlist network with 1683 inputs and 1615 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_scl /tmp/yosys-liberty-scl-cache-0/yosys_merged_cd199c14.scl 
+ABC: Warning: Detected 9 multi-output cells (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + source /home/claude/fpga-audio-filter/asic/results/abc_delay.script 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: WireLoad = "none"  Gates =  10185 (  2.6 %)   Cap =  5.6 ff (  4.8 %)   Area =    66626.40 ( 86.1 %)   Delay =  5741.22 ps  (  5.4 %)               
+ABC: Path  0 --     967 : 0    2 pi                        A =   0.00  Df =   0.0   -0.0 ps  S =   0.0 ps  Cin =  0.0 ff  Cout =   4.8 ff  Cmax =   0.0 ff  G =    0  
+ABC: Path  1 --    7037 : 2    2 sky130_fd_sc_hd__nor2_1   A =   3.75  Df = 133.6  -97.8 ps  S = 152.2 ps  Cin =  2.4 ff  Cout =   7.2 ff  Cmax =  86.1 ff  G =  287  
+ABC: Path  2 --    7039 : 3    2 sky130_fd_sc_hd__o21ai_2  A =   8.76  Df = 234.3  -20.9 ps  S = 136.3 ps  Cin =  4.5 ff  Cout =   7.8 ff  Cmax = 139.2 ff  G =  166  
+ABC: Path  3 --    7040 : 3    2 sky130_fd_sc_hd__maj3_1   A =  10.01  Df = 593.2 -138.8 ps  S =  96.4 ps  Cin =  2.8 ff  Cout =   7.8 ff  Cmax = 155.7 ff  G =  272  
+ABC: Path  4 --    7041 : 3    2 sky130_fd_sc_hd__maj3_1   A =  10.01  Df = 989.4 -323.2 ps  S = 102.8 ps  Cin =  2.8 ff  Cout =   8.5 ff  Cmax = 155.7 ff  G =  296  
+ABC: Path  5 --    7042 : 3    2 sky130_fd_sc_hd__maj3_2   A =  11.26  Df =1331.7 -438.0 ps  S =  73.1 ps  Cin =  3.3 ff  Cout =   9.9 ff  Cmax = 304.9 ff  G =  285  
+ABC: Path  6 --    7043 : 3    3 sky130_fd_sc_hd__maj3_4   A =  13.76  Df =1685.0 -592.9 ps  S =  71.9 ps  Cin =  4.5 ff  Cout =  11.5 ff  Cmax = 534.7 ff  G =  247  
+ABC: Path  7 --    7048 : 4    3 sky130_fd_sc_hd__a211oi_2 A =  12.51  Df =1917.3 -756.4 ps  S = 220.0 ps  Cin =  4.4 ff  Cout =   7.7 ff  Cmax =  88.8 ff  G =  164  
+ABC: Path  8 --    7051 : 5    3 sky130_fd_sc_hd__o311ai_1 A =   8.76  Df =2053.3 -579.0 ps  S = 334.7 ps  Cin =  2.4 ff  Cout =   6.5 ff  Cmax =  45.8 ff  G =  262  
+ABC: Path  9 --    7052 : 4    2 sky130_fd_sc_hd__a31o_2   A =   8.76  Df =2338.2 -635.1 ps  S =  70.3 ps  Cin =  2.4 ff  Cout =   8.5 ff  Cmax = 271.9 ff  G =  349  
+ABC: Path 10 --    7053 : 3    2 sky130_fd_sc_hd__maj3_2   A =  11.26  Df =2661.9 -748.6 ps  S =  69.4 ps  Cin =  3.3 ff  Cout =   8.5 ff  Cmax = 304.9 ff  G =  249  
+ABC: Path 11 --    7054 : 3    2 sky130_fd_sc_hd__maj3_2   A =  11.26  Df =2988.4 -869.1 ps  S =  67.1 ps  Cin =  3.3 ff  Cout =   7.8 ff  Cmax = 304.9 ff  G =  227  
+ABC: Path 12 --    7055 : 3    2 sky130_fd_sc_hd__maj3_1   A =  10.01  Df =3368.9-1059.9 ps  S =  89.8 ps  Cin =  2.8 ff  Cout =   7.1 ff  Cmax = 155.7 ff  G =  247  
+ABC: Path 13 --    7057 : 3    2 sky130_fd_sc_hd__a21oi_1  A =   5.00  Df =3582.6-1181.0 ps  S = 189.9 ps  Cin =  2.3 ff  Cout =   7.1 ff  Cmax =  74.2 ff  G =  292  
+ABC: Path 14 --    7058 : 2    1 sky130_fd_sc_hd__nand2_1  A =   3.75  Df =3652.1-1184.7 ps  S =  44.3 ps  Cin =  2.3 ff  Cout =   2.0 ff  Cmax = 166.6 ff  G =   86  
+ABC: Path 15 --    7059 : 3    2 sky130_fd_sc_hd__o21ai_1  A =   5.00  Df =3780.2-1225.5 ps  S = 216.3 ps  Cin =  2.3 ff  Cout =   9.4 ff  Cmax =  80.6 ff  G =  396  
+ABC: Path 16 --    7061 : 3    2 sky130_fd_sc_hd__o21ai_2  A =   8.76  Df =3869.0-1161.2 ps  S = 136.3 ps  Cin =  4.5 ff  Cout =   7.8 ff  Cmax = 139.2 ff  G =  166  
+ABC: Path 17 --    7062 : 3    2 sky130_fd_sc_hd__maj3_1   A =  10.01  Df =4246.9-1324.3 ps  S =  89.8 ps  Cin =  2.8 ff  Cout =   7.1 ff  Cmax = 155.7 ff  G =  247  
+ABC: Path 18 --    7064 : 3    2 sky130_fd_sc_hd__a21oi_1  A =   5.00  Df =4460.6-1445.4 ps  S = 189.9 ps  Cin =  2.3 ff  Cout =   7.1 ff  Cmax =  74.2 ff  G =  292  
+ABC: Path 19 --    7065 : 2    1 sky130_fd_sc_hd__nand2_1  A =   3.75  Df =4530.1-1449.1 ps  S =  44.3 ps  Cin =  2.3 ff  Cout =   2.0 ff  Cmax = 166.6 ff  G =   86  
+ABC: Path 20 --    7066 : 3    2 sky130_fd_sc_hd__o21ai_1  A =   5.00  Df =4658.2-1489.9 ps  S = 216.3 ps  Cin =  2.3 ff  Cout =   9.4 ff  Cmax =  80.6 ff  G =  396  
+ABC: Path 21 --    7068 : 3    2 sky130_fd_sc_hd__o21ai_2  A =   8.76  Df =4747.0-1425.6 ps  S = 136.3 ps  Cin =  4.5 ff  Cout =   7.8 ff  Cmax = 139.2 ff  G =  166  
+ABC: Path 22 --    7069 : 3    2 sky130_fd_sc_hd__maj3_1   A =  10.01  Df =5124.9-1588.7 ps  S =  89.8 ps  Cin =  2.8 ff  Cout =   7.1 ff  Cmax = 155.7 ff  G =  247  
+ABC: Path 23 --    7071 : 3    2 sky130_fd_sc_hd__a21oi_1  A =   5.00  Df =5338.6-1709.9 ps  S = 189.9 ps  Cin =  2.3 ff  Cout =   7.1 ff  Cmax =  74.2 ff  G =  292  
+ABC: Path 24 --    7072 : 2    1 sky130_fd_sc_hd__nand2_1  A =   3.75  Df =5408.1-1713.5 ps  S =  44.3 ps  Cin =  2.3 ff  Cout =   2.0 ff  Cmax = 166.6 ff  G =   86  
+ABC: Path 25 --    7073 : 3    3 sky130_fd_sc_hd__o21ai_1  A =   5.00  Df =5550.5-1758.5 ps  S = 244.0 ps  Cin =  2.3 ff  Cout =  10.9 ff  Cmax =  80.6 ff  G =  471  
+ABC: Path 26 --    7074 : 3    1 sky130_fd_sc_hd__maj3_1   A =  10.01  Df =5741.2-1619.0 ps  S =  44.5 ps  Cin =  2.8 ff  Cout =   0.0 ff  Cmax = 155.7 ff  G =    0  
+ABC: Start-point = pi966 (\g_pipe.prod_q [267]).  End-point = po1079 (\l1_c [181]).
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+5.2.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__a2111oi_0 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a211o_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a211oi_1 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__a211oi_2 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__a21bo_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a21boi_0 cells:       34
+ABC RESULTS:   sky130_fd_sc_hd__a21boi_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__a21boi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a21o_1 cells:      101
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_1 cells:      365
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__a221oi_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__a22o_1 cells:       10
+ABC RESULTS:   sky130_fd_sc_hd__a22oi_1 cells:       12
+ABC RESULTS:   sky130_fd_sc_hd__a2bb2oi_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a311o_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__a311oi_1 cells:       22
+ABC RESULTS:   sky130_fd_sc_hd__a31o_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a31o_2 cells:        8
+ABC RESULTS:   sky130_fd_sc_hd__a31oi_1 cells:       24
+ABC RESULTS:   sky130_fd_sc_hd__a32o_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__a41oi_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__and2_0 cells:      161
+ABC RESULTS:   sky130_fd_sc_hd__and2_2 cells:       12
+ABC RESULTS:   sky130_fd_sc_hd__and3_1 cells:       87
+ABC RESULTS:   sky130_fd_sc_hd__and3_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__and3b_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__and4_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__buf_4 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__clkbuf_1 cells:        8
+ABC RESULTS:   sky130_fd_sc_hd__inv_1 cells:      193
+ABC RESULTS:   sky130_fd_sc_hd__inv_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__lpflow_clkbufkapwr_1 cells:       54
+ABC RESULTS:   sky130_fd_sc_hd__lpflow_clkinvkapwr_1 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__lpflow_inputiso0n_1 cells:       93
+ABC RESULTS:   sky130_fd_sc_hd__lpflow_inputiso0p_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__lpflow_isobufsrc_1 cells:      321
+ABC RESULTS:   sky130_fd_sc_hd__lpflow_isobufsrc_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__maj3_1 cells:      609
+ABC RESULTS:   sky130_fd_sc_hd__maj3_2 cells:       68
+ABC RESULTS:   sky130_fd_sc_hd__maj3_4 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__mux2_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__mux2i_1 cells:       41
+ABC RESULTS:   sky130_fd_sc_hd__mux2i_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nand2_1 cells:     1014
+ABC RESULTS:   sky130_fd_sc_hd__nand2_4 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nand2b_1 cells:      194
+ABC RESULTS:   sky130_fd_sc_hd__nand3_1 cells:      184
+ABC RESULTS:   sky130_fd_sc_hd__nand3b_1 cells:       20
+ABC RESULTS:   sky130_fd_sc_hd__nand4_1 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__nand4b_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__nor2_1 cells:     1785
+ABC RESULTS:   sky130_fd_sc_hd__nor2_4 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nor2_8 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nor2b_1 cells:       45
+ABC RESULTS:   sky130_fd_sc_hd__nor3_1 cells:      151
+ABC RESULTS:   sky130_fd_sc_hd__nor3b_1 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__nor4_1 cells:       10
+ABC RESULTS:   sky130_fd_sc_hd__nor4b_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o211a_1 cells:       15
+ABC RESULTS:   sky130_fd_sc_hd__o211ai_1 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__o21a_1 cells:       70
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_0 cells:      833
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_1 cells:       54
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_2 cells:       18
+ABC RESULTS:   sky130_fd_sc_hd__o21ba_2 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_1 cells:       14
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o221a_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o221ai_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o22a_1 cells:       14
+ABC RESULTS:   sky130_fd_sc_hd__o22ai_1 cells:       46
+ABC RESULTS:   sky130_fd_sc_hd__o2bb2ai_1 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__o311a_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o311ai_0 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__o311ai_1 cells:       27
+ABC RESULTS:   sky130_fd_sc_hd__o31a_1 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__o31ai_1 cells:       38
+ABC RESULTS:   sky130_fd_sc_hd__o31ai_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o32a_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__o32ai_1 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__or2_2 cells:      164
+ABC RESULTS:   sky130_fd_sc_hd__or3_1 cells:       27
+ABC RESULTS:   sky130_fd_sc_hd__or4_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_1 cells:     2166
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__xnor3_1 cells:       41
+ABC RESULTS:   sky130_fd_sc_hd__xor2_1 cells:      861
+ABC RESULTS:   sky130_fd_sc_hd__xor3_1 cells:       25
+ABC RESULTS:        internal signals:    10084
+ABC RESULTS:           input signals:     1683
+ABC RESULTS:          output signals:     1615
+Removing temp directory.
+Removing global temp directory.
+
+6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fir_par..
+Removed 0 unused cells and 12933 unused wires.
+<suppressed ~9 debug messages>
+
+7. Printing statistics.
+
+=== fir_par ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     9111        - wires
+    12341        - wire bits
+       21        - public wires
+     3251        - public wire bits
+        6        - ports
+       36        - port bits
+    11862    1E+05 cells
+        1    8.758   sky130_fd_sc_hd__a2111oi_0
+        3   26.275   sky130_fd_sc_hd__a211o_1
+       11   82.579   sky130_fd_sc_hd__a211oi_1
+       11  137.632   sky130_fd_sc_hd__a211oi_2
+        1    10.01   sky130_fd_sc_hd__a21bo_2
+       34  255.245   sky130_fd_sc_hd__a21boi_0
+        4   30.029   sky130_fd_sc_hd__a21boi_1
+        1   11.261   sky130_fd_sc_hd__a21boi_2
+      101  758.227   sky130_fd_sc_hd__a21o_1
+      365 1.83E+03   sky130_fd_sc_hd__a21oi_1
+        9   78.826   sky130_fd_sc_hd__a21oi_2
+        2   17.517   sky130_fd_sc_hd__a221oi_1
+       10   87.584   sky130_fd_sc_hd__a22o_1
+       12   90.086   sky130_fd_sc_hd__a22oi_1
+        1    8.758   sky130_fd_sc_hd__a2bb2oi_1
+        2   20.019   sky130_fd_sc_hd__a311o_1
+       22  192.685   sky130_fd_sc_hd__a311oi_1
+        1    8.758   sky130_fd_sc_hd__a31o_1
+        8   70.067   sky130_fd_sc_hd__a31o_2
+       24  150.144   sky130_fd_sc_hd__a31oi_1
+        2   20.019   sky130_fd_sc_hd__a32o_1
+        2   17.517   sky130_fd_sc_hd__a41oi_1
+      161 1.01E+03   sky130_fd_sc_hd__and2_0
+       12   90.086   sky130_fd_sc_hd__and2_2
+       87  544.272   sky130_fd_sc_hd__and3_1
+        1    7.507   sky130_fd_sc_hd__and3_2
+        3   26.275   sky130_fd_sc_hd__and3b_1
+        2   17.517   sky130_fd_sc_hd__and4_1
+        1    7.507   sky130_fd_sc_hd__buf_4
+        8   30.029   sky130_fd_sc_hd__clkbuf_1
+     1677 3.36E+04   sky130_fd_sc_hd__dfxtp_1
+      193  724.445   sky130_fd_sc_hd__inv_1
+        1    3.754   sky130_fd_sc_hd__inv_2
+       54  202.694   sky130_fd_sc_hd__lpflow_clkbufkapwr_1
+        5   18.768   sky130_fd_sc_hd__lpflow_clkinvkapwr_1
+       93  581.808   sky130_fd_sc_hd__lpflow_inputiso0n_1
+        2   15.014   sky130_fd_sc_hd__lpflow_inputiso0p_1
+      321 2.01E+03   sky130_fd_sc_hd__lpflow_isobufsrc_1
+        2   17.517   sky130_fd_sc_hd__lpflow_isobufsrc_2
+      609  6.1E+03   sky130_fd_sc_hd__maj3_1
+       68  765.734   sky130_fd_sc_hd__maj3_2
+        1   13.763   sky130_fd_sc_hd__maj3_4
+        2   22.522   sky130_fd_sc_hd__mux2_2
+       41  410.394   sky130_fd_sc_hd__mux2i_1
+        1   13.763   sky130_fd_sc_hd__mux2i_2
+     1014  3806.15   sky130_fd_sc_hd__nand2_1
+        1   11.261   sky130_fd_sc_hd__nand2_4
+      194 1.21E+03   sky130_fd_sc_hd__nand2b_1
+      184  920.883   sky130_fd_sc_hd__nand3_1
+       20  150.144   sky130_fd_sc_hd__nand3b_1
+        5    31.28   sky130_fd_sc_hd__nand4_1
+        4   35.034   sky130_fd_sc_hd__nand4b_1
+     1785  6.7E+03   sky130_fd_sc_hd__nor2_1
+        1   11.261   sky130_fd_sc_hd__nor2_4
+        1   20.019   sky130_fd_sc_hd__nor2_8
+       45   281.52   sky130_fd_sc_hd__nor2b_1
+      151  755.725   sky130_fd_sc_hd__nor3_1
+        6   45.043   sky130_fd_sc_hd__nor3b_1
+       10    62.56   sky130_fd_sc_hd__nor4_1
+        1    8.758   sky130_fd_sc_hd__nor4b_1
+       15  150.144   sky130_fd_sc_hd__o211a_1
+        9   67.565   sky130_fd_sc_hd__o211ai_1
+       70  525.504   sky130_fd_sc_hd__o21a_1
+      833 4.17E+03   sky130_fd_sc_hd__o21ai_0
+       54  270.259   sky130_fd_sc_hd__o21ai_1
+       18  157.651   sky130_fd_sc_hd__o21ai_2
+        6   60.058   sky130_fd_sc_hd__o21ba_2
+       14  105.101   sky130_fd_sc_hd__o21bai_1
+        1   11.261   sky130_fd_sc_hd__o21bai_2
+        1   11.261   sky130_fd_sc_hd__o221a_2
+        2   17.517   sky130_fd_sc_hd__o221ai_1
+       14  122.618   sky130_fd_sc_hd__o22a_1
+       46  287.776   sky130_fd_sc_hd__o22ai_1
+        6    52.55   sky130_fd_sc_hd__o2bb2ai_1
+        3   30.029   sky130_fd_sc_hd__o311a_1
+        5   43.792   sky130_fd_sc_hd__o311ai_0
+       27  236.477   sky130_fd_sc_hd__o311ai_1
+        9   78.826   sky130_fd_sc_hd__o31a_1
+       38  285.274   sky130_fd_sc_hd__o31ai_1
+        2   25.024   sky130_fd_sc_hd__o31ai_2
+        4   40.038   sky130_fd_sc_hd__o32a_1
+        5   43.792   sky130_fd_sc_hd__o32ai_1
+      164 1.03E+03   sky130_fd_sc_hd__or2_2
+       27  168.912   sky130_fd_sc_hd__or3_1
+        1    7.507   sky130_fd_sc_hd__or4_1
+     2166  1.9E+04   sky130_fd_sc_hd__xnor2_1
+        1   16.266   sky130_fd_sc_hd__xnor2_2
+       41  923.386   sky130_fd_sc_hd__xnor3_1
+      861 7.54E+03   sky130_fd_sc_hd__xor2_1
+       25   594.32   sky130_fd_sc_hd__xor3_1
+
+   Chip area for module '\fir_par': 100198.598400
+     of which used for sequential elements: 33572.198400 (33.51%)
+
+End of script. Logfile hash: d92bb70c91, time: 8.01s, user: 3.99s, system: 0.15s, MEM: 101.80 MB peak
+Yosys 0.70+ (git sha1 365bb887b, Release, GNU /usr/bin/c++ 13.3.0)
+Time spent: 59% 2x abc (4 sec), 10% 35x opt_clean (0 sec), ...

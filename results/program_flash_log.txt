@@ -1,0 +1,95 @@
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>   program.bat flash
+
+****** Vivado v2018.2 (64-bit)
+  **** SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+  **** IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source {fpga\scripts\program.tcl}
+# set root  [file normalize [file join [file dirname [info script]] .. ..]]
+# set bit   [file join $root build top_nexys_a7.bit]
+# set mcs   [file join $root build top_nexys_a7.mcs]
+# set target sram
+# if {[llength $argv] > 0} { set target [lindex $argv 0] }
+# if {[llength [info commands open_hw_manager]] > 0} { open_hw_manager } else { open_hw }
+# connect_hw_server
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2018.2
+  **** Build date : Jun 14 2018-20:42:52
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+
+# set targets {}
+# for {set i 0} {$i < 10} {incr i} {
+#     catch {refresh_hw_server -quiet}
+#     set targets [get_hw_targets -quiet]
+#     if {[llength $targets] > 0} { break }
+#     after 1000
+# }
+# if {[llength $targets] == 0} {
+#     puts "== ERROR: hw_server sees no JTAG cable."
+#     puts "== Board powered on, cable in PROG/UART, Vivado GUI closed? If yes, the Digilent JTAG"
+#     puts "== driver is missing: run C:/Xilinx/Vivado/2018.2/data/xicom/cable_drivers/nt64/digilent/install_digilent.exe"
+#     puts "== as administrator, then unplug and replug the board."
+#     exit 1
+# }
+# puts "== JTAG target: [lindex $targets 0]"
+== JTAG target: localhost:3121/xilinx_tcf/Digilent/210292B579EBA
+# current_hw_target [lindex $targets 0]
+# open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210292B579EBA
+# set dev [lindex [get_hw_devices xc7a*] 0]
+# if {$dev eq ""} { error "no Artix-7 found on the USB cable: check power, cable and drivers" }
+# current_hw_device $dev
+# refresh_hw_device -update_hw_probes false $dev
+INFO: [Labtools 27-1434] Device xc7a50t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3361] The debug hub core was not detected.
+Resolution:
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active.
+2. Make sure the BSCAN_SWITCH_USER_MASK device property in Vivado Hardware Manager reflects the user scan chain setting in the design and refresh the device.  To determine the user scan chain setting in the design, open the implemented design and use 'get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub]'.
+For more details on setting the scan chain property, consult the Vivado Debug and Programming User Guide (UG908).
+# if {$target eq "flash"} {
+#     # Nexys A7 QSPI flash (Spansion/Infineon S25FL128S)
+#     create_hw_cfgmem -hw_device $dev -mem_dev [lindex [get_cfgmem_parts {s25fl128sxxxxxx0-spi-x1_x2_x4}] 0]
+#     set cm [get_property PROGRAM.HW_CFGMEM $dev]
+#     set_property PROGRAM.ADDRESS_RANGE {use_file} $cm
+#     set_property PROGRAM.FILES [list $mcs] $cm
+#     set_property PROGRAM.BLANK_CHECK 0 $cm
+#     set_property PROGRAM.ERASE 1 $cm
+#     set_property PROGRAM.CFG_PROGRAM 1 $cm
+#     set_property PROGRAM.VERIFY 1 $cm
+#     create_hw_bitstream -hw_device $dev [get_property PROGRAM.HW_CFGMEM_BITFILE $dev]
+#     program_hw_devices $dev
+#     program_hw_cfgmem -hw_cfgmem $cm
+#     boot_hw_device $dev
+# } else {
+#     set_property PROGRAM.FILE $bit $dev
+#     program_hw_devices $dev
+# }
+INFO: [Labtools 27-3164] End of startup status: HIGH
+Mfg ID : 1   Memory Type : 20   Memory Capacity : 18   Device ID 1 : 0   Device ID 2 : 0
+Performing Erase Operation...
+Erase Operation successful.
+Performing Program and Verify Operations...
+Program/Verify Operation successful.
+INFO: [Labtoolstcl 44-377] Flash programming completed successfully
+program_hw_cfgmem: Time (s): cpu = 00:00:00 ; elapsed = 00:00:19 . Memory (MB): peak = 922.109 ; gain = 1.707
+INFO: [Labtoolstcl 44-664] Will wait up to 180 seconds for booting to complete.
+INFO: [Labtools 27-32] Done pin status: HIGH
+# puts "== programmed ($target)"
+== programmed (flash)
+# if {[llength [info commands close_hw_manager]] > 0} { close_hw_manager } else { close_hw }
+****** Webtalk v2018.2 (64-bit)
+  **** SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+  **** IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source C:/Users/ACER/Desktop/fpga-audio-filter/fpga-audio-filter/.Xil/Vivado-24204-Saman/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Thu Oct 29 15:13:25 2026...
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 29 15:13:26 2026...
+Press any key to continue . . .
+
+C:\Users\ACER\Desktop\fpga-audio-filter\fpga-audio-filter>

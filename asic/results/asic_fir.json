@@ -1,0 +1,10 @@
+{
+  "taps": 31,
+  "data_bits": 16,
+  "coef_bits": 16,
+  "passband_ripple_db": 0.3516648958071274,
+  "stopband_atten_db": 53.65897221486895,
+  "unique_multipliers": 16,
+  "csd_nonzero_digits_total": 67,
+  "n_vectors": 2112
+}

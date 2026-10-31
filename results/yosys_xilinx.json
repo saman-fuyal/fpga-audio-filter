@@ -1,0 +1,12 @@
+{
+  "lut": 2173,
+  "lutram": 0,
+  "ff": 2274,
+  "carry4": 376,
+  "dsp48e1": 18,
+  "bram18": 3,
+  "bram36": 9,
+  "srl": 0,
+  "muxf": 3,
+  "bram_tiles": 10.5
+}

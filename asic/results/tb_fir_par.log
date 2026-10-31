@@ -1,0 +1,2 @@
+PASS tb_fir_par: 2112 samples bit-exact for PIPE=0 and PIPE=1
+tb_fir_par.sv:32: $finish called at 24380000 (1ps)

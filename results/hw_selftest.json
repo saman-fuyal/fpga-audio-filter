@@ -1,0 +1,68 @@
+{
+  "time": "2026-10-30 13:56:46",
+  "fir": [
+    {
+      "bank": 0,
+      "samples": 3584,
+      "mismatches": 0,
+      "seconds": 0.19962191581726074
+    },
+    {
+      "bank": 1,
+      "samples": 3584,
+      "mismatches": 0,
+      "seconds": 0.1988215446472168
+    },
+    {
+      "bank": 2,
+      "samples": 3584,
+      "mismatches": 0,
+      "seconds": 0.19596338272094727
+    },
+    {
+      "bank": 3,
+      "samples": 3584,
+      "mismatches": 0,
+      "seconds": 0.196580171585083
+    },
+    {
+      "bank": 4,
+      "samples": 3584,
+      "mismatches": 0,
+      "seconds": 0.1940312385559082
+    }
+  ],
+  "chain": [
+    {
+      "bank": 0,
+      "gain": 4,
+      "samples": 10000,
+      "mismatches": 0
+    },
+    {
+      "bank": 1,
+      "gain": 6,
+      "samples": 10000,
+      "mismatches": 0
+    },
+    {
+      "bank": 2,
+      "gain": 6,
+      "samples": 10000,
+      "mismatches": 0
+    },
+    {
+      "bank": 3,
+      "gain": 8,
+      "samples": 10000,
+      "mismatches": 0
+    },
+    {
+      "bank": 4,
+      "gain": 4,
+      "samples": 10000,
+      "mismatches": 0
+    }
+  ],
+  "pass": true
+}
